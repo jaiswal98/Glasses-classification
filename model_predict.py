@@ -10,8 +10,8 @@ import shutil
 from tensorflow.math import confusion_matrix
 
 # Define paths
-test_dir = r"C:\Rahul\AI\Dataset\archive\non\test"
-glasses_folder = r"C:\Rahul\AI\Dataset\archive\non\glasses_detected"  # New folder to move glasses images
+test_dir = r"..\test"
+glasses_folder = r"..\glasses_detected"  # New folder to move glasses images
 best_model = load_model('glasses_classifier.h5')
 
 # Create the new folder if it doesn't exist
