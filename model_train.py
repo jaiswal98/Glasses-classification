@@ -24,8 +24,8 @@ import cv2
 import warnings
 warnings.filterwarnings('ignore')
 
-train_dir = r"C:\Rahul\AI\Dataset\archive\non\train"
-val_dir = r"C:\Rahul\AI\Dataset\archive\non\validate"
+train_dir = r"..\train"
+val_dir = r"..\validate"
 
 glasses_dir = os.path.join(train_dir, 'glasses')
 no_glasses_dir = os.path.join(train_dir, 'noglasses')
