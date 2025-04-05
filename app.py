@@ -21,7 +21,7 @@ model_path = "glasses_classifier.h5"
 
 if not os.path.exists(model_path):
     url = "https://drive.google.com/uc?id=1JF8N1q2bwqDkAdpBk-dUojD7ZUSm2EqA"  # not the full sharing link
-    gdown.download(url, model_path, quiet=False)
+    gdown.download("https://drive.google.com/uc?id=1JF8N1q2bwqDkAdpBk-dUojD7ZUSm2EqA", "glasses_classifier.h5", quiet=False)
 
 model = load_model(model_path)
 input_shape = model.input_shape[1:3]  # e.g., (256, 256)
