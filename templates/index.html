@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🕶️ Glasses Detection</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; font-family: 'Segoe UI', sans-serif; }
+        .container { margin-top: 60px; max-width: 800px; }
+        .prediction-item { font-size: 1.1rem; }
+        .glasses { color: #dc3545; font-weight: bold; }  /* Red */
+        .noglasses { color: #198754; font-weight: bold; } /* Green */
+        .note { font-size: 0.95rem; color: #6c757d; }
+        .btn-primary, .btn-secondary { min-width: 180px; }
+    </style>
+</head>
+<body>
+<div class="container text-center">
+    <h1 class="mb-4">🕶️ Upload Images for Glasses Detection</h1>
+    
+    <form method="POST" enctype="multipart/form-data">
+        <div class="mb-3">
+            <input class="form-control" type="file" name="images" multiple required>
+        </div>
+        <button class="btn btn-primary mb-4" type="submit">Upload & Predict</button>
+    </form>
+
+    {% if predictions %}
+    <div class="text-start">
+        <h4>🔍 Predictions</h4>
+        <ul class="list-group mb-4">
+            {% for filename, label in predictions %}
+                <li class="list-group-item prediction-item">
+                    <strong>{{ filename }}</strong>: <span class="{{ label }}">{{ label }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+        <a class="btn btn-secondary" href="{{ download_link }}" download>⬇️ Download Results (ZIP)</a>
+    </div>
+    {% endif %}
+
+    <p class="note mt-4">
+        Your files will be stored on our server for <strong>1 month</strong>. After that, they will be <strong>automatically deleted</strong>.
+    </p>
+</div>
+</body>
+</html>
