@@ -1,5 +1,7 @@
 # Glasses-classification
-With the help of cnn model, I have created a glasses classifier from the image.
+I have developed an image-based glasses classification model using a Convolutional Neural Network (CNN). The project has been deployed on the Render web service and is currently in the operational phase. You can test the model with your own images using the link below:
+
+🔗 https://glasses-classifier.onrender.com
 
 # Epoch Visualization
 
