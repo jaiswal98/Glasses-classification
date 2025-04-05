@@ -14,7 +14,16 @@ from werkzeug.utils import secure_filename
 app = Flask(__name__)
 
 # Load Model
-model = load_model(r'C:\Users\rahulj\Downloads\Glasses-classification-main\Model\glasses_classifier.h5')
+import os
+import gdown
+
+model_path = "glasses_classifier.h5"
+
+if not os.path.exists(model_path):
+    url = "https://drive.google.com/drive/folders/1pumOeaD5rElrW0x93eiUqiOdz3mOgfxc"  # not the full sharing link
+    gdown.download(url, model_path, quiet=False)
+
+model = load_model(model_path)
 input_shape = model.input_shape[1:3]  # e.g., (256, 256)
 
 # Directory for storing results
