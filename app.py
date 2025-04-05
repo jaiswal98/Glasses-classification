@@ -10,26 +10,27 @@ import threading
 import time
 from datetime import datetime, timedelta
 from werkzeug.utils import secure_filename
-
-app = Flask(__name__)
-
 # Load Model
 import os
 import gdown
 
+app = Flask(__name__)
 model_path = "glasses_classifier.h5"
 
+
+
+
 if not os.path.exists(model_path):
+    print("Downloading model...")
     url = "https://drive.google.com/uc?id=1JF8N1q2bwqDkAdpBk-dUojD7ZUSm2EqA"  # not the full sharing link
-    gdown.download(url, "glasses_classifier.h5", quiet=False)
+    gdown.download(url, model_path, quiet=False)
 
 try:
     model = load_model(model_path)
 except Exception as e:
     print("Error loading model:", e)
     model = None
-if model is None:
-    return "Model not loaded", 500
+
 
 input_shape = model.input_shape[1:3]  # e.g., (256, 256)
 
@@ -67,6 +68,8 @@ def schedule_deletion(folder_path, delete_after_days=30):
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
+        if model is None:
+            return "Model not loaded", 500
         files = request.files.getlist('images')
 
         session_id = str(uuid.uuid4())  # Unique session ID
@@ -115,7 +118,7 @@ def index():
             predictions=predictions,
             download_link=url_for('download', zip_file=zip_filename)
         )
-
+        return "File uploaded successfully"
     return render_template('index.html')
 
 
