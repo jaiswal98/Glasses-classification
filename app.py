@@ -20,7 +20,7 @@ import gdown
 model_path = "glasses_classifier.h5"
 
 if not os.path.exists(model_path):
-    url = "https://drive.google.com/drive/folders/1pumOeaD5rElrW0x93eiUqiOdz3mOgfxc?usp=sharing"  # not the full sharing link
+    url = "https://drive.google.com/file/d/1JF8N1q2bwqDkAdpBk-dUojD7ZUSm2EqA/view?usp=sharing"  # not the full sharing link
     gdown.download(url, model_path, quiet=False)
 
 model = load_model(model_path)
